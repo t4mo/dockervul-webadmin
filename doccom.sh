@@ -13,7 +13,8 @@ function getdir(){
 	    if [[ "$result" != "" ]]
 	    then
   		 dirs=`dirname "$dir_or_file"`
-	         `cd "$dirs" ;docker-compose build`
+	         cd $dirs 
+		 `docker-compose build`
 
 	    fi
 	fi  
