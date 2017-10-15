@@ -17,6 +17,8 @@ class DockerCommand:
         self.url='tcp://'+url+':'+port
         self.client = docker.APIClient(base_url=self.url, version=version, timeout=10)
 
+    #run img
+
     def run(self, imgid,ports):
         containerId = self.client.create_container(image=imgid, ports=ports,
                                                    host_config=self.client.create_host_config(port_bindings={
@@ -29,6 +31,7 @@ class DockerCommand:
             return containerId['Id']
         except Exception,e:
             return False
+
 
 
 
