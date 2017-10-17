@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" >
+<link href="/static/css/xterm.css" rel="stylesheet">
+<script src="/static/js/xterm.js"></script>
+
+<div class="row">
+
+<div id="terminal-container" data-id="{{containerId}}" ></div>
+        <script>
+
+
+
+         container = document.getElementById('terminal-container');
+            var term = new Terminal(),
+
+            url = 'ws://127.0.0.1:8081/admin/dockervul/getSocket/'+$('#terminal-container').attr('data-id')
+            socket = new WebSocket(url);
+
+            term.open(document.getElementById('terminal-container'));
+            term.on('data', function (data) {
+                socket.send(data);
+            });
+
+            socket.onmessage = function (e) {
+                term.write(e.data);
+            }
+
+
+        </script>
+</div>
+{% endblock %}
