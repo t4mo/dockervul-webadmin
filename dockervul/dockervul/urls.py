@@ -16,7 +16,8 @@ Including another URLconf
 from django.conf.urls import url,include
 
 urlpatterns = [
-    url(r'^manger/', include('manger.urls')),
     url(r'^users/', include('users.urls')),
     url(r'^users/', include('django.contrib.auth.urls')),
+    url(r'^dockerimg/', include('dockerimg.urls')),
+
 ]
